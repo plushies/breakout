@@ -21,9 +21,11 @@
     var dx = 2;
     var dy = -2;
 
+    var ballRadius = 10;
+
     function drawBall() {
         ctx.beginPath();
-        ctx.arc(x, y, 10, 0, Math.PI*2);
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2);
         ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
@@ -34,6 +36,14 @@
         drawBall();
         x += dx;
         y += dy;
+
+        if (y + dy < 0 || y + dy > canvas.height) {
+            dy = -dy;
+        }
+
+        if (x + dx < 0 || x + dx > canvas.width) {
+            dx = -dx;
+        }
     }
 
     setInterval(draw, 10);
